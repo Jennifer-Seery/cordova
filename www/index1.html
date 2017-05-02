@@ -1,0 +1,48 @@
+<!--Login HTML Page-->
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styling.css"></link>
+    <script type="text/javascript" src="info.js"></script>
+</head>
+<body>
+
+
+<div id="rcornerslog">
+    <div id = "heads"> Login </div>
+    <div id = 'content'>
+        <form name="login">
+			Username:    <input type="text" id="userid" name="userid"/>
+			</br>
+			Password:    <input type="password" id = "pswrd" name="pswrd"/>
+			</br>
+			<input type="button" onclick="check(this.form)" value="Login"/>
+			<input type="reset" value="Cancel"/>
+		</form>
+		
+<script>
+function check(form)
+{  
+  
+	Username = form.userid.value;
+    Password = form.pswrd.value;
+  
+    console.log(Username);
+
+	if(Username == "jen" && Password == "123")
+    {
+      location.replace("file:///C:/Cordova/WebMappingAssignment/www/map.html");
+    }
+     
+        
+  
+}
+
+</script>      
+      
+
+</div>
+</div>
+</body>
+</html>
+
