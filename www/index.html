@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
 
+<head>
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
 <link rel="stylesheet" type="text/css" href="css/styling.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <h1> Find My Food </h1>
 </head>
 
 <body>
 <div id="map" style="width: 600px; height: 400px"></div>
-<button onclick="kfc()">KFC</button>
+<input id="1" type="button" value="KFC">
+<input id="2" type="button" value="BurgerKing">
+<input id="5" type="button" value="TGIFridays">
+<input id="4" type="button" value="McDonalds">
+<input id="3" type="button" value="Subway">
 <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"> </script>
 
 <script>
@@ -39,133 +45,167 @@ function fetch(url, options)
   }); 
 }
 
- // Fetch called 
-  fetch(url,options)
+// Fetch called 
+fetch(url,options)
   .then(function(data)
   {
   
-		console.log("Hit");
+	
 	 // Storing recieved data into an array
       for(var i=0;i<data.length;i++){
-	  console.log("hit")
         toDo=data;
       }  
 	  
-	  console.log(toDo);
-
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'KFC' && toDo[i].locations == "Jervis"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'KFC' && toDo[i].locations == "Jervis")
+		{
 			kfcJervislat = toDo[i].latitude
 			kfcJervislong = toDo[i].longitude
-	
 		}
 	  }
 	  
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'KFC' && toDo[i].locations == "Parnell"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'KFC' && toDo[i].locations == "Parnell")
+		{
 			kfcParnelllat = toDo[i].latitude
 			kfcParnelllong = toDo[i].longitude
 	
 		}
 	  }
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'KFC' && toDo[i].locations == "Westmoreland"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'KFC' && toDo[i].locations == "Westmoreland")
+		{
 			kfcWMLlat = toDo[i].latitude
 			kfcWMLlong = toDo[i].longitude
 	
 		}
 	  }
 	  
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'BurgerKing' && toDo[i].locations == "StAndrews"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'BurgerKing' && toDo[i].locations == "StAndrews")
+		{
 			bkSAlat = toDo[i].latitude
 			bkSAlong = toDo[i].longitude
 	
 		}
 	  }
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'BurgerKing' && toDo[i].locations == "AbbeyStreet"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'BurgerKing' && toDo[i].locations == "AbbeyStreet")
+		{
 			bkASlat = toDo[i].latitude
 			bkASlong = toDo[i].longitude
 	
 		}
 	  }
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'BurgerKing' && toDo[i].locations == "HenryStreet"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'BurgerKing' && toDo[i].locations == "HenryStreet")
+		{
 			bkHSlat = toDo[i].latitude
 			bkHSlong = toDo[i].longitude
 	
 		}
 	  }
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'Subway' && toDo[i].locations == "EssexGate"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'Subway' && toDo[i].locations == "EssexGate")
+		{
 			swEGlat = toDo[i].latitude
 			swEGlong = toDo[i].longitude
 	
 		}
 	  }
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'Subway' && toDo[i].locations == "CollegeGreen"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'Subway' && toDo[i].locations == "CollegeGreen")
+		{
 			swCGlat = toDo[i].latitude
 			swCGlong = toDo[i].longitude
 	
 		}
 	  }
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'Subway' && toDo[i].locations == "MerchantsQuay"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'Subway' && toDo[i].locations == "MerchantsQuay")
+		{
 			swMQlat = toDo[i].latitude
 			swMQlong = toDo[i].longitude
 	
 		}
 	  }
-	  for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "NassauStreet"){
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "NassauStreet")
+		{
 			mdNSlat = toDo[i].latitude
 			mdNSlong = toDo[i].longitude
 	
 		}
-	  }for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "TempleBar"){
+	  }
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "TempleBar")
+		{
 			mdTBlat = toDo[i].latitude
 			mdTBlong = toDo[i].longitude
 	
 		}
-	  }for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "Triarc"){
+	  }
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "Triarc")
+		{
 			mdTlat = toDo[i].latitude
 			mdTlong = toDo[i].longitude
 	
 		}
-	  }for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "TrinityCollege"){
+	  }
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "TrinityCollege")
+		{
 			mdTClat = toDo[i].latitude
 			mdTClong = toDo[i].longitude
 	
 		}
-	  }for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'TGIFridays' && toDo[i].locations == "StephensGreen"){
+	  }
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'TGIFridays' && toDo[i].locations == "StephensGreen")
+		{
 			tgiSGlat = toDo[i].latitude
 			tgiSGlong = toDo[i].longitude
 	
 		}
-	  }for(var i=0 ; i<data.length;i++){
-		if(toDo[i].restname = 'TGIFridays' && toDo[i].locations == "TempleBar"){
+	  }
+	  for(var i=0 ; i<data.length;i++)
+	  {
+		if(toDo[i].restname = 'TGIFridays' && toDo[i].locations == "TempleBar")
+		{
 			tgiTBlat = toDo[i].latitude
 			tgiTBlong = toDo[i].longitude
 	
 		}
 	  }
-	var map = L.map('map');
-	map.locate({setView: true, maxZoom: 16});
-	mapLink = 
-	'<a href="http://openstreetmap.org">OpenStreetMap</a>';
-		L.tileLayer(
-			'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			attribution: '&copy; ' + mapLink + ' Contributors',
-			maxZoom: 18,
-			}).addTo(map);
+	
+	
+var map = L.map('map');
+map.locate({setView: true, maxZoom: 16});
+mapLink = 
+'<a href="http://openstreetmap.org">OpenStreetMap</a>';
+	L.tileLayer(
+		'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; ' + mapLink + ' Contributors',
+		maxZoom: 18,
+		}).addTo(map);
 
 
+// Finding the current location
 function onLocationFound(e) 
 {
 		var radius = e.accuracy / 2;
@@ -176,26 +216,43 @@ function onLocationFound(e)
 map.on('locationfound', onLocationFound);
 
 
-var KFCJ = L.marker([kfcJervislat, kfcJervislong]).addTo(map);
-var KFCP = L.marker([kfcParnelllat, kfcParnelllong]).addTo(map);
-var KFCW = L.marker([kfcWMLlat, kfcWMLlong]).addTo(map);
 
-var BKSA = L.marker([bkSAlat, bkSAlong]).addTo(map);
-var BKAS = L.marker([bkASlat, bkASlong]).addTo(map);
-var BKHS = L.marker([bkHSlat, bkHSlong]).addTo(map);
 
-var SWEG = L.marker([swEGlat, swEGlong]).addTo(map);
-var SWCG = L.marker([swCGlat, swCGlong]).addTo(map);
-var SWMQ = L.marker([swMQlat, swMQlong]).addTo(map);
+$("#1").click(function(event)
+{
 
-var MDNS = L.marker([mdNSlat, mdNSlong]).addTo(map);
-var MDTB = L.marker([mdTBlat, mdTBlong]).addTo(map);
-var MDT = L.marker([mdTlat, mdTlong]).addTo(map);
-var MDTC = L.marker([mdTClat, mdTClong]).addTo(map);
+var KFCJ = L.marker([kfcJervislat, kfcJervislong]).addTo(map).bindPopup("KFC Jervis").openPopup();
+var KFCP = L.marker([kfcParnelllat, kfcParnelllong]).addTo(map).bindPopup("KFC Parnell").openPopup();
+var KFCW = L.marker([kfcWMLlat, kfcWMLlong]).addTo(map).bindPopup("KFC Westmoreland").openPopup();
+});
 
-var TGISG = L.marker([tgiSGlat, tgiSGlong]).addTo(map);
-var TGITB = L.marker([tgiTBlat, tgiTBlong]).addTo(map);
+$("#2").click(function(event)
+{
+var BKSA = L.marker([bkSAlat, bkSAlong]).addTo(map).bindPopup("Burger King St Andrews").openPopup();
+var BKAS = L.marker([bkASlat, bkASlong]).addTo(map).bindPopup("Burger King Abbey Street").openPopup();
+var BKHS = L.marker([bkHSlat, bkHSlong]).addTo(map).bindPopup("Burger King Henry Street").openPopup();
+});
 
+$("#3").click(function(event)
+{
+var SWEG = L.marker([swEGlat, swEGlong]).addTo(map).bindPopup("Subway Essex Gate").openPopup();
+var SWCG = L.marker([swCGlat, swCGlong]).addTo(map).bindPopup("Subway College Green").openPopup();
+var SWMQ = L.marker([swMQlat, swMQlong]).addTo(map).bindPopup("Subway Merchants Quay").openPopup();
+});
+
+$("#4").click(function(event)
+{
+var MDNS = L.marker([mdNSlat, mdNSlong]).addTo(map).bindPopup("McDonalds Nassau Street").openPopup();
+var MDTB = L.marker([mdTBlat, mdTBlong]).addTo(map).bindPopup("McDonalds Temple Bar").openPopup();
+var MDT = L.marker([mdTlat, mdTlong]).addTo(map).bindPopup("McDonalds Triarc").openPopup();
+var MDTC = L.marker([mdTClat, mdTClong]).addTo(map).bindPopup("McDonalds Trintiy College").openPopup();
+});
+
+$("#5").click(function(event)
+{
+var TGISG = L.marker([tgiSGlat, tgiSGlong]).addTo(map).bindPopup("TGI Fridays Stephens Green").openPopup();
+var TGITB = L.marker([tgiTBlat, tgiTBlong]).addTo(map).bindPopup("TGI Fridays Temple Bar").openPopup();
+});
 
 
 

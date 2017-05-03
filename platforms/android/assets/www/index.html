@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+<link rel="stylesheet" type="text/css" href="css/styling.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<h1> Find My Food </h1>
+</head>
+
+<body>
+<div id="map" style="width: 600px; height: 400px"></div>
+<input id="1" type="button" value="KFC">
+<input id="2" type="button" value="BurgerKing">
+<input id="5" type="button" value="TGIFridays">
+<input id="4" type="button" value="McDonalds">
+<input id="3" type="button" value="Subway">
+<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"> </script>
+
+<script>
+	
+// Setting Variables
+const url = 'https://murmuring-gorge-59527.herokuapp.com/geodb/?format=json';
+const options= {method:null,headers:{name:null,value:null}};
+
+// Layout of the fetch function
+function fetch(url, options) 
+{
+  return new Promise(function(resolve, reject) 
+  {
+    var Req = new XMLHttpRequest();
+    Req.open("GET", url); 
+    Req.onload = function () {
+      if (Req.status >= 200 && Req.status < 300) {
+        resolve(JSON.parse(Req.response));
+      } else {
+        reject({
+          status: Req.status,
+          statusText: Req.statusText
+        });
+      }
+    };
+    Req.send();
+  }); 
+}
+
+ // Fetch called 
+  fetch(url,options)
+  .then(function(data)
+  {
+  
+		console.log("Hit");
+	 // Storing recieved data into an array
+      for(var i=0;i<data.length;i++){
+	  console.log("hit")
+        toDo=data;
+      }  
+	  
+	  console.log(toDo);
+
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'KFC' && toDo[i].locations == "Jervis"){
+			kfcJervislat = toDo[i].latitude
+			kfcJervislong = toDo[i].longitude
+	
+		}
+	  }
+	  
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'KFC' && toDo[i].locations == "Parnell"){
+			kfcParnelllat = toDo[i].latitude
+			kfcParnelllong = toDo[i].longitude
+	
+		}
+	  }
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'KFC' && toDo[i].locations == "Westmoreland"){
+			kfcWMLlat = toDo[i].latitude
+			kfcWMLlong = toDo[i].longitude
+	
+		}
+	  }
+	  
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'BurgerKing' && toDo[i].locations == "StAndrews"){
+			bkSAlat = toDo[i].latitude
+			bkSAlong = toDo[i].longitude
+	
+		}
+	  }
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'BurgerKing' && toDo[i].locations == "AbbeyStreet"){
+			bkASlat = toDo[i].latitude
+			bkASlong = toDo[i].longitude
+	
+		}
+	  }
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'BurgerKing' && toDo[i].locations == "HenryStreet"){
+			bkHSlat = toDo[i].latitude
+			bkHSlong = toDo[i].longitude
+	
+		}
+	  }
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'Subway' && toDo[i].locations == "EssexGate"){
+			swEGlat = toDo[i].latitude
+			swEGlong = toDo[i].longitude
+	
+		}
+	  }
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'Subway' && toDo[i].locations == "CollegeGreen"){
+			swCGlat = toDo[i].latitude
+			swCGlong = toDo[i].longitude
+	
+		}
+	  }
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'Subway' && toDo[i].locations == "MerchantsQuay"){
+			swMQlat = toDo[i].latitude
+			swMQlong = toDo[i].longitude
+	
+		}
+	  }
+	  for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "NassauStreet"){
+			mdNSlat = toDo[i].latitude
+			mdNSlong = toDo[i].longitude
+	
+		}
+	  }for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "TempleBar"){
+			mdTBlat = toDo[i].latitude
+			mdTBlong = toDo[i].longitude
+	
+		}
+	  }for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "Triarc"){
+			mdTlat = toDo[i].latitude
+			mdTlong = toDo[i].longitude
+	
+		}
+	  }for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'McDonalds' && toDo[i].locations == "TrinityCollege"){
+			mdTClat = toDo[i].latitude
+			mdTClong = toDo[i].longitude
+	
+		}
+	  }for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'TGIFridays' && toDo[i].locations == "StephensGreen"){
+			tgiSGlat = toDo[i].latitude
+			tgiSGlong = toDo[i].longitude
+	
+		}
+	  }for(var i=0 ; i<data.length;i++){
+		if(toDo[i].restname = 'TGIFridays' && toDo[i].locations == "TempleBar"){
+			tgiTBlat = toDo[i].latitude
+			tgiTBlong = toDo[i].longitude
+	
+		}
+	  }
+	var map = L.map('map');
+	map.locate({setView: true, maxZoom: 16});
+	mapLink = 
+	'<a href="http://openstreetmap.org">OpenStreetMap</a>';
+		L.tileLayer(
+			'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; ' + mapLink + ' Contributors',
+			maxZoom: 18,
+			}).addTo(map);
+
+
+function onLocationFound(e) 
+{
+		var radius = e.accuracy / 2;
+		L.marker(e.latlng).addTo(map)
+		.bindPopup("You are within " + radius + " meters from this point").openPopup();
+		L.circle(e.latlng, radius).addTo(map);
+}
+map.on('locationfound', onLocationFound);
+
+$("#1").click(function(event)
+{
+
+var KFCJ = L.marker([kfcJervislat, kfcJervislong]).addTo(map);
+var KFCP = L.marker([kfcParnelllat, kfcParnelllong]).addTo(map);
+var KFCW = L.marker([kfcWMLlat, kfcWMLlong]).addTo(map);
+});
+
+$("#2").click(function(event)
+{
+var BKSA = L.marker([bkSAlat, bkSAlong]).addTo(map);
+var BKAS = L.marker([bkASlat, bkASlong]).addTo(map);
+var BKHS = L.marker([bkHSlat, bkHSlong]).addTo(map);
+});
+
+$("#3").click(function(event)
+{
+var SWEG = L.marker([swEGlat, swEGlong]).addTo(map);
+var SWCG = L.marker([swCGlat, swCGlong]).addTo(map);
+var SWMQ = L.marker([swMQlat, swMQlong]).addTo(map);
+});
+
+$("#4").click(function(event)
+{
+var MDNS = L.marker([mdNSlat, mdNSlong]).addTo(map);
+var MDTB = L.marker([mdTBlat, mdTBlong]).addTo(map);
+var MDT = L.marker([mdTlat, mdTlong]).addTo(map);
+var MDTC = L.marker([mdTClat, mdTClong]).addTo(map);
+});
+
+$("#5").click(function(event)
+{
+var TGISG = L.marker([tgiSGlat, tgiSGlong]).addTo(map);
+var TGITB = L.marker([tgiTBlat, tgiTBlong]).addTo(map);
+});
+
+
+
+})
+
+
+
+.catch(function(err)
+{
+  console.error(err);  
+});
+
+ 
+</script>
+</body>
+</html>
